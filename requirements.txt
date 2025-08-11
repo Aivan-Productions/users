@@ -1,0 +1,13 @@
+базы данных
+gorm.io/gorm - для баз данных
+
+http
+github.com/gin-gonic/gin - http фреймворк
+
+env
+github.com/joho/godotenv - загружает переменные из .env файла в окружение
+github.com/caarlos0/env - парсит переменные окружения в структуры
+
+Тесты
+github.com/stretchr/testify - для тестирования
+github.com/stretchr/testify/mock - для создания моков в тестах
