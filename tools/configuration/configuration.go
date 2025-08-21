@@ -36,7 +36,7 @@ func Load() *Config {
 	cfg := defaultConfig()
 
 	if err := env.Parse(cfg); err != nil {
-		cfg = defaultConfig()
+		return cfg
 	}
 
 	validate(cfg)
