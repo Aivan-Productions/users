@@ -5,8 +5,8 @@ import (
 	"os"
 	"slices"
 
-	"github.com/caarlos0/env/v11"
-	"github.com/joho/godotenv"
+	"github.com/caarlos0/env/v11" // form environment to struct
+	"github.com/joho/godotenv"    // from file to environment
 )
 
 type Config struct {
@@ -14,6 +14,7 @@ type Config struct {
 	LOG_FORMAT string `env:"LOG_FORMAT" envDefault:"text"`
 }
 
+// function that creates the default config
 func defaultConfig() *Config {
 	return &Config{
 		PORT:       8080,
@@ -21,6 +22,7 @@ func defaultConfig() *Config {
 	}
 }
 
+// data validation function from .env
 func validate(cfg *Config) {
 	if cfg.PORT <= 0 || cfg.PORT > 65535 {
 		cfg.PORT = 8080
@@ -30,6 +32,7 @@ func validate(cfg *Config) {
 	}
 }
 
+// function of loading variables from a file into the environment
 func loadVarToEnv(configFileName string) {
 	if _, err := os.Stat(configFileName); err != nil {
 		panic(fmt.Sprintf("configuration: file %s not found: %v", configFileName, err))
@@ -40,6 +43,7 @@ func loadVarToEnv(configFileName string) {
 	}
 }
 
+// function that loads variables into a structure
 func Load(configFileName string) *Config {
 	loadVarToEnv(".env")
 	loadVarToEnv(configFileName)
