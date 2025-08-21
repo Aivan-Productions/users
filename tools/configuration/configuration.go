@@ -10,20 +10,20 @@ import (
 )
 
 type Config struct {
-	PORT       int    `env:"PORT" envDefault:"2000"`
+	PORT       int    `env:"PORT" envDefault:"8080"`
 	LOG_FORMAT string `env:"LOG_FORMAT" envDefault:"text"`
 }
 
 func defaultConfig() *Config {
 	return &Config{
-		PORT:       2000,
+		PORT:       8080,
 		LOG_FORMAT: "text",
 	}
 }
 
 func validate(cfg *Config) {
 	if cfg.PORT <= 0 || cfg.PORT > 65535 {
-		cfg.PORT = 2000
+		cfg.PORT = 8080
 	}
 	if !slices.Contains([]string{"text", "json"}, cfg.LOG_FORMAT) {
 		cfg.LOG_FORMAT = "text"
